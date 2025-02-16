@@ -2,7 +2,7 @@
     <div class="nav-container">
         <a class="navbar-brand" href="#">
             <img class="pixarlogo"
-                src="PixarLogo.svg"
+                src="https://images.squarespace-cdn.com/content/v1/60241cb68df65b530cd84d95/1613495438818-408JDVSTB7NWSHVC20M7/logo.png?format=1500w"
                 alt="Pixar Logo" width="160"/>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -11,84 +11,22 @@
 
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link" href="#" id="filmsDropdown" role="button">
-                        FILMS
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a class="dropdown-item" routerLink="/features">FEATURE FILMS</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" routerLink="/shorts">SHORT FILMS</a>
-                        </li>
-                        <li><a class="dropdown-item" routerLink="/series">SERIES</a></li>
-                        <li>
-                            <a class="dropdown-item" routerLink="/sparkshorts">SPARKSHORTS</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" routerLink="/documentaries">DOCUMENTARIES</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link" href="#" id="techDropdown" role="button" data-bs-toggle="dropdown">
-                        TECHNOLOGY
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a class="dropdown-item" routerLink="/tech">TECH AT PIXAR</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" routerLink="/renderman">RENDERMAN</a>
-                        </li>
-                        <li><a class="dropdown-item" routerLink="/openusd">OPENUSD</a></li>
-                        <li>
-                            <a class="dropdown-item" routerLink="/software-rd">SOFTWARE R&D</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" routerLink="/libraries">LIBRARIES</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link" href="#" id="careersDropdown" role="button" data-bs-toggle="dropdown">
-                        CAREERS
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a class="dropdown-item" routerLink="/careers">CAREERS AT PIXAR</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" routerLink="/internships">INTERNSHIPS</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" routerLink="/life-at-pixar">LIFE AT PIXAR</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link" href="#" id="moreDropdown" role="button" data-bs-toggle="dropdown">
-                        MORE
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" routerLink="/leaders">LEADERS</a></li>
-                        <li>
-                            <a class="dropdown-item" routerLink="/our-story">OUR STORY</a>
-                        </li>
-                        <li><a class="dropdown-item" routerLink="/events">EVENTS</a></li>
-                        <li>
-                            <a class="dropdown-item" routerLink="/pixar-in-a-box">PIXAR IN A BOX</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" routerLink="/supplier-diversity">SUPPLIER DIVERSITY</a>
-                        </li>
-                        <li><a class="dropdown-item" routerLink="/faqs">FAQ’S</a></li>
-                    </ul>
-                </li>
+                @for (item of menuItems; track item.id) {
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#" [id]="item.id" role="button" data-bs-toggle="dropdown">
+                            {{ item.title }}
+                        </a>
+                        @if (item.subItems) {
+                            <ul class="dropdown-menu">
+                                @for (subItem of item.subItems; track subItem.routerLink) {
+                                    <li>
+                                        <a class="dropdown-item" [routerLink]="subItem.routerLink">{{ subItem.title }}</a>
+                                    </li>
+                                }
+                            </ul>
+                        }
+                    </li>
+                }
             </ul>
         </div>
     </div>

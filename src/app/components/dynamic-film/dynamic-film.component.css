@@ -1,4 +1,11 @@
 .video-background {
     background: #00000000;
+    max-width: 100vh;
+    margin: 0px;
+    padding: 0px;
+}
+.background-video{
     width: 100%;
+    margin: 0px;
+    padding: 0px;
 }
